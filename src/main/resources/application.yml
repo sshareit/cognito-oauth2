@@ -1,0 +1,21 @@
+spring:
+
+  # replace ${placeholders} with your aws cognito values or use environment variables
+
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            clientId: ${COGNITO_CLIENT_ID}
+            clientSecret: ${COGNITO_CLIENT_SECRET}
+            scope: openid
+            redirectUri: http://localhost:8080/login/oauth2/code/cognito
+            clientName: ${COGNITO_CLIENT_NAME}
+        provider:
+          cognito:
+            issuerUri: https://cognito-idp.eu-central-1.amazonaws.com/${COGNITO_USER_POOL_ID}
+            userNameAttribute: username # username or cognito:username
+
+cognito:
+  logoutUrl: https://${COGNITO_USER_POOL_NAME}.auth.eu-central-1.amazoncognito.com/logout
